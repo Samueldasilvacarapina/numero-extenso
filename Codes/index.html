@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000000; /* Fundo preto */
+            background-color: #000000;
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -15,10 +15,10 @@
         }
 
         .container {
-            background-color: #000000; /* Fundo preto também na área do formulário */
+            background-color: #000000;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* Sombra vermelha leve */
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
             width: 100%;
             max-width: 600px;
         }
@@ -33,12 +33,12 @@
         }
 
         input {
-            background-color: #1a1a1a; /* Fundo preto escuro para input */
+            background-color: #1a1a1a;
             color: #ffffff;
         }
 
         button {
-            background-color: #ff0000; /* Vermelhão */
+            background-color: #ff0000;
             color: #ffffff;
             font-weight: bold;
             cursor: pointer;
@@ -46,7 +46,7 @@
         }
 
         button:hover {
-            background-color: #cc0000; /* Vermelho mais escuro ao passar o mouse */
+            background-color: #cc0000;
         }
 
         #resultado {
@@ -68,7 +68,6 @@
 </div>
 
 <script>
-    // Mesmas funções do seu código original
     function unidades(n) {
         return ["", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove"][n];
     }
@@ -140,27 +139,37 @@
 
         const valorFormatado = valor.toLocaleString("pt-BR", {
             style: "currency",
-            currency: "BRL",
-            minimumFractionDigits: 2
+            currency: "BRL"
         });
-
         const extenso = extensoCompleto(valor).toLowerCase();
+
         const valorDobro = valor * 2;
         const valorDobroFormatado = valorDobro.toLocaleString("pt-BR", {
             style: "currency",
-            currency: "BRL",
-            minimumFractionDigits: 2
+            currency: "BRL"
         });
         const extensoDobro = extensoCompleto(valorDobro).toLowerCase();
-        const valorIndenizacao = valorDobro + 10000;
-        const valorIndenizacaoFormatado = valorIndenizacao.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-            minimumFractionDigits: 2
-        });
-        const extensoIndenizacao = extensoCompleto(valorIndenizacao).toLowerCase();
 
-        const resultadoFinal = `${valorFormatado} (${extenso})\nDobro: ${valorDobroFormatado} (${extensoDobro})\nIndenização: ${valorIndenizacaoFormatado} (${extensoIndenizacao})`;
+        const valorIndenizacao10k = valorDobro + 10000;
+        const valorIndenizacao10kFormatado = valorIndenizacao10k.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
+        const extensoIndenizacao10k = extensoCompleto(valorIndenizacao10k).toLowerCase();
+
+        const valorIndenizacao3k = valorDobro + 3000;
+        const valorIndenizacao3kFormatado = valorIndenizacao3k.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
+        const extensoIndenizacao3k = extensoCompleto(valorIndenizacao3k).toLowerCase();
+
+        const resultadoFinal =
+            `${valorFormatado} (${extenso})\n` +
+            `Dobro: ${valorDobroFormatado} (${extensoDobro})\n` +
+            `Indenização (dobro + R$ 10.000): ${valorIndenizacao10kFormatado} (${extensoIndenizacao10k})\n` +
+            `Indenização (dobro + R$ 3.000): ${valorIndenizacao3kFormatado} (${extensoIndenizacao3k})`;
+
         document.getElementById("resultado").innerText = resultadoFinal;
     }
 </script>
